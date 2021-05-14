@@ -7,13 +7,13 @@ function signout (req, res) {
 	keystone.callHook(user, 'pre:signout', function (err) {
 		if (err) return res.status(500).json({ error: 'pre:signout error', detail: err });
 		res.clearCookie('keystone.uid');
+		res.clearCookie('nocache');
 		req.user = null;
 		req.session.regenerate(function (err) {
 			if (err) return res.status(500).json({ error: 'session error', detail: err });
 			keystone.callHook(user, 'post:signout', function (err) {
 				if (err) return res.status(500).json({ error: 'post:signout error', detail: err });
-				res.clearCookie('nocache', cookieOpts).json({ success: true });
-				console.log('SIGN OUT Keystone Cookie');
+				res.json({ success: true });
 			});
 		});
 	});
