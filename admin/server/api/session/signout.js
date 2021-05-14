@@ -7,7 +7,6 @@ function signout (req, res) {
 	keystone.callHook(user, 'pre:signout', function (err) {
 		if (err) return res.status(500).json({ error: 'pre:signout error', detail: err });
 		res.clearCookie('keystone.uid');
-		res.clearCookie('nocache');
 		req.user = null;
 		req.session.regenerate(function (err) {
 			if (err) return res.status(500).json({ error: 'session error', detail: err });
