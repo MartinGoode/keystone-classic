@@ -20,14 +20,7 @@ function signin (req, res) {
 						session.signinWithUser(user, req, res, function () {
 							keystone.callHook(user, 'post:signin', req, function (err) {
 								if (err) return res.status(500).json({ error: 'post:signin error', detail: err });
-								res.cookie('nocache', 1, cookieOpts).json({ success: true, user: user });
-								var cookieOpts = {
-									signed: true,
-									httpOnly: true,
-									maxAge: 10 * 24 * 60 * 60 * 1000,
-								};
-								console.log('SIGN IN Keystone Cookie');
-
+								res.json({ success: true, user: user });
 							});
 						});
 					} else if (err) {
