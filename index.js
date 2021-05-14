@@ -85,6 +85,9 @@ var Keystone = function () {
 		this.set('cloudinary config', true);
 	}
 
+	// Use Trust proxy by default
+			this.set('trust proxy', true);
+	
 	// init mongoose
 	this.set('mongoose', require('mongoose'));
 	this.mongoose.Promise = require('es6-promise').Promise;
