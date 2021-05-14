@@ -12,7 +12,8 @@ function signout (req, res) {
 			if (err) return res.status(500).json({ error: 'session error', detail: err });
 			keystone.callHook(user, 'post:signout', function (err) {
 				if (err) return res.status(500).json({ error: 'post:signout error', detail: err });
-				res.json({ success: true });
+				res.clearCookie('nocache', cookieOpts).json({ success: true });
+				console.log('SIGN OUT Keystone Cookie');
 			});
 		});
 	});
