@@ -86,7 +86,7 @@ var Keystone = function () {
 	}
 
 	// Use Trust proxy by default
-			this.set('trust proxy', true);
+		//this.set('trust proxy', true);
 	
 	// init mongoose
 	this.set('mongoose', require('mongoose'));
